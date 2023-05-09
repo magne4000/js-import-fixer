@@ -192,12 +192,12 @@ const coreUtils = {
           .replace(/['"]/, '')
           .replace(/;/, '');
         moduleUsageMap[lib] = moduleUsageMap[lib] || [];
-        let parsedImprotedModule = s
+        let parsedImportedModule = s
           .replace(REGEX_IMPORT_ES6_PARTIAL_LIBRARY_NAME, '')
           .replace('import ', '')
           .replace(/[ \n]+/g, ' ');
 
-        const moduleSplits = parsedImprotedModule.split('{');
+        const moduleSplits = parsedImportedModule.split('{');
 
         let libFullPath = lib;
         if (libFullPath.indexOf('./') === 0 || libFullPath.indexOf('../') === 0) {
@@ -216,7 +216,7 @@ const coreUtils = {
         coreUtils.processParseSplits(
           lib,
           libFullPath,
-          parsedImprotedModule,
+          parsedImportedModule,
           moduleUsageMap,
           libraryImportMap,
           importedModules,

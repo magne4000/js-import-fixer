@@ -9,7 +9,7 @@ try {
     .split('\n')
     .filter((s) => !s.includes('#') && !s.includes('*') && s);
 } catch (err) {
-  console.warn('Failed to read .gitignore');
+  // console.warn('Failed to read .gitignore');
 }
 
 export default gitiginorePatterns;
