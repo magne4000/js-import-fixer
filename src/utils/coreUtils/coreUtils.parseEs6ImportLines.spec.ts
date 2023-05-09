@@ -10,6 +10,8 @@ describe('coreUtils.parseEs6ImportLines', () => {
     "import IDataAdapter from './IDataAdapter';",
     "import BaseDataAdapter from './BaseDataAdapter';",
     "import { Express } from 'express';",
+    "import type { JSX } from 'react';",
+    "import { type Something } from 'solid';",
   ];
 
   const fileNameSample2 = '/git/sqlui-native/src/App.tsx';

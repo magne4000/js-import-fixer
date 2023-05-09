@@ -13,6 +13,7 @@ type ImportEntry = {
   lib: string;
   libFullPath: string;
   alias: string;
+  isTypeImport: boolean;
   syntax: ImportSyntax;
 };
 
@@ -197,8 +198,6 @@ const coreUtils = {
           .replace('import ', '')
           .replace(/[ \n]+/g, ' ');
 
-        const moduleSplits = parsedImportedModule.split('{');
-
         let libFullPath = lib;
         if (libFullPath.indexOf('./') === 0 || libFullPath.indexOf('../') === 0) {
           // this is a relative imports, then resolve the path if needed
@@ -290,6 +289,11 @@ const coreUtils = {
     importedModules: ImportedModules = new Set(),
     importSyntax: ImportSyntax
   ) => {
+    let isGlobalTypeImport = false;
+    if (parsedImprotedModule.startsWith('type ')) {
+      isGlobalTypeImport = true;
+      parsedImprotedModule = parsedImprotedModule.replace('type ', '');
+    }
     const moduleSplits = parsedImprotedModule.split('{');
 
     for (let moduleSplit of moduleSplits) {
@@ -303,6 +307,11 @@ const coreUtils = {
           .filter((s) => s);
         for (let moduleName of childModuleSplits) {
           // is a child module import
+          let isTypeImport = false;
+          if (moduleName.startsWith('type ')) {
+            isTypeImport = true;
+            moduleName = moduleName.replace('type ', '');
+          }
           const aliasName = coreUtils.getAliasName(moduleName);
           moduleName = coreUtils.getModuleName(moduleName);
           importedModules.add(aliasName);
@@ -310,6 +319,7 @@ const coreUtils = {
           importEntry = {
             name: moduleName,
             alias: aliasName,
+            isTypeImport: isTypeImport || isGlobalTypeImport,
             type: 'module',
             lib,
             libFullPath,
@@ -336,6 +346,7 @@ const coreUtils = {
             alias: aliasName,
             type: 'default',
             lib,
+            isTypeImport: false,
             libFullPath,
             syntax: importSyntax,
           };
@@ -360,14 +371,14 @@ const coreUtils = {
     if (configs.groupImport === false) {
       // here we don't group, each import is treated as a separate line
       for (const aModule of usedModules) {
-        const { type, lib, libFullPath, alias, name } = libraryImportMap[aModule];
+        const { type, lib, libFullPath, alias, name, isTypeImport } = libraryImportMap[aModule];
         librariesUsedByThisFile.add(lib);
 
         if (type === 'module') {
           if (alias !== name) {
-            newImportedContent.push(`import { ${name} as ${alias} } from '${libFullPath}';`);
+            newImportedContent.push(`import ${isTypeImport ? 'type ' : ''}{ ${name} as ${alias} } from '${libFullPath}';`);
           } else {
-            newImportedContent.push(`import { ${name} } from '${libFullPath}';`);
+            newImportedContent.push(`import ${isTypeImport ? 'type ' : ''}{ ${name} } from '${libFullPath}';`);
           }
         } else {
           // default
@@ -382,7 +393,7 @@ const coreUtils = {
       let importGroups: Record<string, Record<string, string[]>> = {}; // libName => default , module
 
       for (const aModule of usedModules) {
-        const { type, lib, libFullPath, alias, name } = libraryImportMap[aModule];
+        const { type, lib, alias, name, isTypeImport } = libraryImportMap[aModule];
         librariesUsedByThisFile.add(lib);
 
         importGroups[lib] = importGroups[lib] || {};
@@ -393,7 +404,7 @@ const coreUtils = {
           if (alias !== name) {
             importGroups[lib]['module'].push(`${name} as ${alias}`);
           } else {
-            importGroups[lib]['module'].push(`${name}`);
+            importGroups[lib]['module'].push(`${isTypeImport ? 'type ' : ''}${name}`);
           }
         } else {
           // default

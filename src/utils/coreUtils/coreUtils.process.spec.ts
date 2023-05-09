@@ -14,6 +14,7 @@ describe('coreUtils.process', () => {
   const fileSample1 = path.join('__mocks__/', 'sample_1.js');
   const fileSample2 = path.join('__mocks__/', 'sample_2.js');
   const fileSample3 = path.join('__mocks__/', 'sample_3.js');
+  const fileSample3TS = path.join('__mocks__/', 'sample_3_ts.ts');
   const fileSample4 = path.join('__mocks__/nested_dir_a/nested_dir_b', 'sample_4.js');
   const fileSample5 = path.join('__mocks__/', 'sample_5.js');
   const fileSample6 = path.join('__mocks__/', 'sample_6.js');
@@ -216,6 +217,41 @@ describe('coreUtils.process', () => {
 
       var a2 = constant2;
       var temp2 = externalLib2();"
+    `);
+  });
+
+  test('sample_3_ts.ts withGroupImport', async () => {
+    configs.groupImport = true;
+
+    const actual = _process(fileSample3TS);
+
+    expect(actual.error).toBe(false);
+
+    expect(actual.unusedLibs).toMatchInlineSnapshot(`
+      Array [
+        "unusedMethod1",
+        "methodLib2",
+        "UnusedType",
+      ]
+    `);
+
+    expect(actual.libUsageStats).toMatchInlineSnapshot(`
+        Object {
+          "externalLib1": 1,
+          "externalLib2": 1,
+        }
+      `);
+
+    expect(actual.output).toMatchInlineSnapshot(`
+      "import externalLib1, { aliasMethodLib1 as myAliasMethod1, constant1, methodLib1, type Type1 } from 'externalLib1';
+      import externalLib2, { constant2, type Type2 } from 'externalLib2';
+      var a1 = constant1;
+      methodLib1();
+      externalLib1();
+      myAliasMethod1();
+
+      var a2: Type1 = constant2;
+      var temp2: Type2 = externalLib2();"
     `);
   });
 
