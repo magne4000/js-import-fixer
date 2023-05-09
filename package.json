@@ -1,6 +1,6 @@
 {
   "name": "@magne4000/import-fixer",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "A shell command tool that cleaned up unused imports in a Typescript / Javascript code base.",
   "main": "./dist/library.js",
   "bin": {
