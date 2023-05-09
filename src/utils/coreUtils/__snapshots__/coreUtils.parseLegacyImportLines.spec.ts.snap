@@ -1,0 +1,245 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`coreUtils.parseLegacyImportsLines importSample1 example 1`] = `
+Object {
+  "apiClient": Object {
+    "alias": "apiClient",
+    "isTypeImport": false,
+    "lib": "./utils/api/apiClient",
+    "libFullPath": "./utils/api/apiClient",
+    "name": "apiClient",
+    "syntax": "legacy",
+    "type": "default",
+  },
+  "child_process": Object {
+    "alias": "child_process",
+    "isTypeImport": false,
+    "lib": "child_process",
+    "libFullPath": "child_process",
+    "name": "child_process",
+    "syntax": "legacy",
+    "type": "default",
+  },
+  "database": Object {
+    "alias": "database",
+    "isTypeImport": false,
+    "lib": "database",
+    "libFullPath": "database",
+    "name": "database",
+    "syntax": "legacy",
+    "type": "default",
+  },
+  "faker": Object {
+    "alias": "faker",
+    "isTypeImport": false,
+    "lib": "faker",
+    "libFullPath": "faker",
+    "name": "faker",
+    "syntax": "legacy",
+    "type": "default",
+  },
+  "fs": Object {
+    "alias": "fs",
+    "isTypeImport": false,
+    "lib": "fs",
+    "libFullPath": "fs",
+    "name": "fs",
+    "syntax": "legacy",
+    "type": "default",
+  },
+  "host": Object {
+    "alias": "host",
+    "isTypeImport": false,
+    "lib": "./config",
+    "libFullPath": "./config",
+    "name": "host",
+    "syntax": "legacy",
+    "type": "module",
+  },
+  "http": Object {
+    "alias": "http",
+    "isTypeImport": false,
+    "lib": "http",
+    "libFullPath": "http",
+    "name": "http",
+    "syntax": "legacy",
+    "type": "default",
+  },
+  "moment": Object {
+    "alias": "moment",
+    "isTypeImport": false,
+    "lib": "moment",
+    "libFullPath": "moment",
+    "name": "moment",
+    "syntax": "legacy",
+    "type": "default",
+  },
+  "network": Object {
+    "alias": "network",
+    "isTypeImport": false,
+    "lib": "network",
+    "libFullPath": "network",
+    "name": "network",
+    "syntax": "legacy",
+    "type": "default",
+  },
+  "path": Object {
+    "alias": "path",
+    "isTypeImport": false,
+    "lib": "path",
+    "libFullPath": "path",
+    "name": "path",
+    "syntax": "legacy",
+    "type": "default",
+  },
+  "port": Object {
+    "alias": "port",
+    "isTypeImport": false,
+    "lib": "./config",
+    "libFullPath": "./config",
+    "name": "port",
+    "syntax": "legacy",
+    "type": "module",
+  },
+}
+`;
+
+exports[`coreUtils.parseLegacyImportsLines importSample1 example 2`] = `
+Object {
+  "./config": Array [
+    Object {
+      "alias": "host",
+      "isTypeImport": false,
+      "lib": "./config",
+      "libFullPath": "./config",
+      "name": "host",
+      "syntax": "legacy",
+      "type": "module",
+    },
+    Object {
+      "alias": "port",
+      "isTypeImport": false,
+      "lib": "./config",
+      "libFullPath": "./config",
+      "name": "port",
+      "syntax": "legacy",
+      "type": "module",
+    },
+  ],
+  "./utils/api/apiClient": Array [
+    Object {
+      "alias": "apiClient",
+      "isTypeImport": false,
+      "lib": "./utils/api/apiClient",
+      "libFullPath": "./utils/api/apiClient",
+      "name": "apiClient",
+      "syntax": "legacy",
+      "type": "default",
+    },
+  ],
+  "child_process": Array [
+    Object {
+      "alias": "child_process",
+      "isTypeImport": false,
+      "lib": "child_process",
+      "libFullPath": "child_process",
+      "name": "child_process",
+      "syntax": "legacy",
+      "type": "default",
+    },
+  ],
+  "database": Array [
+    Object {
+      "alias": "database",
+      "isTypeImport": false,
+      "lib": "database",
+      "libFullPath": "database",
+      "name": "database",
+      "syntax": "legacy",
+      "type": "default",
+    },
+  ],
+  "faker": Array [
+    Object {
+      "alias": "faker",
+      "isTypeImport": false,
+      "lib": "faker",
+      "libFullPath": "faker",
+      "name": "faker",
+      "syntax": "legacy",
+      "type": "default",
+    },
+  ],
+  "fs": Array [
+    Object {
+      "alias": "fs",
+      "isTypeImport": false,
+      "lib": "fs",
+      "libFullPath": "fs",
+      "name": "fs",
+      "syntax": "legacy",
+      "type": "default",
+    },
+  ],
+  "http": Array [
+    Object {
+      "alias": "http",
+      "isTypeImport": false,
+      "lib": "http",
+      "libFullPath": "http",
+      "name": "http",
+      "syntax": "legacy",
+      "type": "default",
+    },
+  ],
+  "moment": Array [
+    Object {
+      "alias": "moment",
+      "isTypeImport": false,
+      "lib": "moment",
+      "libFullPath": "moment",
+      "name": "moment",
+      "syntax": "legacy",
+      "type": "default",
+    },
+  ],
+  "network": Array [
+    Object {
+      "alias": "network",
+      "isTypeImport": false,
+      "lib": "network",
+      "libFullPath": "network",
+      "name": "network",
+      "syntax": "legacy",
+      "type": "default",
+    },
+  ],
+  "path": Array [
+    Object {
+      "alias": "path",
+      "isTypeImport": false,
+      "lib": "path",
+      "libFullPath": "path",
+      "name": "path",
+      "syntax": "legacy",
+      "type": "default",
+    },
+  ],
+}
+`;
+
+exports[`coreUtils.parseLegacyImportsLines importSample1 example 3`] = `
+Set {
+  "http",
+  "fs",
+  "host",
+  "port",
+  "path",
+  "child_process",
+  "apiClient",
+  "database",
+  "network",
+  "moment",
+  "faker",
+}
+`;
